@@ -1,18 +1,11 @@
 package com.example.Eshop.domain;
 
-import com.mysql.cj.xdevapi.Session;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
-/*!
-	\brief Класс пользователя, описывающий сущность
-*/
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
@@ -23,37 +16,10 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
-    private String email;
-    private String activationCode;
-
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @OrderBy
-    private Set<Product> favouriteProducts;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @OrderBy
-    private Set<Product> cartProducts;
-
-    public Set<Product> getCartProducts() {
-        return cartProducts;
-    }
-
-    public void setCartProducts(Set<Product> cartProducts) {
-        this.cartProducts = cartProducts;
-    }
-
-    public Set<Product> getFavouriteProducts() {
-        return favouriteProducts;
-    }
-
-    public void setFavouriteProducts(Set<Product> favouriteProducts) {
-        this.favouriteProducts = favouriteProducts;
-    }
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
@@ -123,23 +89,6 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
-
 }
 
 

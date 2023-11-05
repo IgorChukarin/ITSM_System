@@ -14,9 +14,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/*!
-	\brief Класс контроллер для работы с пользователями
-*/
 @Controller
 @RequestMapping("/user")
 @PreAuthorize("hasAuthority('USER')")
@@ -24,14 +21,12 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    /// \brief выводит всех пользователей
     @GetMapping
     public String userList(Model model) {
         model.addAttribute("users", userRepo.findAll());
         return "userList";
     }
 
-    /// \brief дает возможность менять роль и имя пользователям
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
@@ -39,7 +34,6 @@ public class UserController {
         return "userEdit";
     }
 
-    /// \brief сохранить изменения
     @PostMapping
     public String userSave(
             @RequestParam String username,
@@ -63,7 +57,6 @@ public class UserController {
         return "redirect:/user";
     }
 
-    /// \brief выводит страницу пользователя
     @GetMapping("/userPage/{user}")
     public String showUserPage(@PathVariable User user, Model model) {
         model.addAttribute("userName", user.getUsername());

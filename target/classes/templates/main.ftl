@@ -87,7 +87,7 @@
 <div class="card-columns">
     <#list products as product>
     <div class="card my-3">
-        <#if product.filename??>
+    <#if product.filename??>
         <img src="/img/${product.filename}" class="card-img-top">
     </#if>
     <div class="m-2">
