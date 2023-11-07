@@ -1,18 +1,15 @@
 package com.example.Eshop.service;
 
-import com.example.Eshop.domain.Role;
-import com.example.Eshop.domain.User;
+import com.example.Eshop.model.Role;
+import com.example.Eshop.model.User;
 import com.example.Eshop.repos.UserRepo;
-import freemarker.template.utility.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Collections;
-import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {

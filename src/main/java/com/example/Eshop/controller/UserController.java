@@ -1,7 +1,7 @@
 package com.example.Eshop.controller;
 
-import com.example.Eshop.domain.Role;
-import com.example.Eshop.domain.User;
+import com.example.Eshop.model.Role;
+import com.example.Eshop.model.User;
 import com.example.Eshop.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,12 +1,10 @@
 package com.example.Eshop.controller;
 
-import com.example.Eshop.domain.User;
+import com.example.Eshop.model.User;
 import com.example.Eshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
@@ -25,9 +23,8 @@ public class RegistrationController {
     public String addUser(User user, Map<String, Object> model) {
         if (!userService.addUser(user)) {
             model.put("message", "User exists!");
-            return "registration";
         }
-        return "redirect:/login";
+        return "registration";
     }
 
 }

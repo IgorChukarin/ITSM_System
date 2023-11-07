@@ -1,0 +1,12 @@
+.centered-form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.margintop50 {
+    margin-top: 50px;
+}
