@@ -12,9 +12,14 @@ WHERE NOT EXISTS (
     WHERE user_id = 1 AND roles = 'ADMIN'
 );
 
-INSERT IGNORE INTO business_service (id, name, price, service_line, work_composition) values (1, 'Do something', 100, 'Doing', 'Do something and Do something else');
-INSERT IGNORE INTO business_service (id, name, price, service_line, work_composition) values (2, 'Do some', 200, 'Doing', 'Do something and Do something else');
-INSERT IGNORE INTO business_service (id, name, price, service_line, work_composition) values (3, 'Do something', 300, 'Doing', 'Do something and Do something else');
+
+INSERT INTO business_service (id, name, price, service_line, work_composition) VALUES
+(1, 'Do1', 100, 'Doing', 'Do something and Do something else'),
+(2, 'Do2', 200, 'Doing', 'Do something and Do something else'),
+(3, 'Do3', 300, 'Doing', 'Do something and Do something else'),
+(4, 'Do4', 400, 'Doing', 'Do something and Do something else'),
+(5, 'Do5', 500, 'Doing', 'Do something and Do something else');
+
 
 INSERT IGNORE INTO technical_service (id, service_line, name, auxiliary_element) values (1, 'Doing', 'Break into computer', 'helper');
 INSERT IGNORE INTO technical_service (id, service_line, name, auxiliary_element) values (2, 'Dobingling', 'Break computer', 'google');

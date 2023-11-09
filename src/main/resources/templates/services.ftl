@@ -132,7 +132,7 @@ Delete service
 </a>
 <div class="collapse" id="colTecAdd">
    <div class="form-group mt-3">
-      <form method="post" enctype="multipart/form-data">
+      <form method="post" action="addTechnicalService">
          <div class="form-group">
             <input type="text" name="serviceLine" placeholder="Service line" required/>
          </div>
@@ -151,7 +151,7 @@ Delete service
 </div>
 <div class="collapse" id="colTecDel">
    <div class="form-group mt-3">
-      <form method="post" action="delete">
+      <form method="post" action="deleteTechnicalService">
          <div class="form-group">
             <input type="number" name="id" placeholder="Id" required>
          </div>
@@ -164,7 +164,7 @@ Delete service
 </div>
 <div class="collapse" id="colTecUpd">
    <div class="form-group mt-3">
-      <form method="post" action="update">
+      <form method="post" action="updateTechnicalService">
          <div class="form-group">
             <input type="number" name="id" placeholder="Id" required>
          </div>
@@ -175,7 +175,7 @@ Delete service
             <input type="text" name="name" placeholder="Name" required/>
          </div>
          <div class="form-group">
-            <input type="text" name="auxiliaryElement" placeholder="AuxiliaryElement" required/>
+            <input type="text" name="auxiliaryElements" placeholder="AuxiliaryElement" required/>
          </div>
          <input type="hidden" name="_csrf" value="${_csrf.token}" />
          <div>
@@ -184,6 +184,6 @@ Delete service
       </form>
    </div>
 </div>
-<div style="margin-bottom: 100px">
+<div style="margin-bottom: 250px">
 </div>
 </@c.page>

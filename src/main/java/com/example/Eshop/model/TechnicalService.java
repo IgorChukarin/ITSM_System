@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class TechnicalService {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String serviceLine;
@@ -47,6 +46,17 @@ public class TechnicalService {
     }
 
     public void setAuxiliaryElement(String auxiliaryElement) {
+        this.auxiliaryElement = auxiliaryElement;
+    }
+
+
+    public TechnicalService() {
+    }
+
+    public TechnicalService(int id, String serviceLine, String name, String auxiliaryElement) {
+        this.id = id;
+        this.serviceLine = serviceLine;
+        this.name = name;
         this.auxiliaryElement = auxiliaryElement;
     }
 }
