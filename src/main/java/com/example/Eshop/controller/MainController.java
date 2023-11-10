@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -42,8 +42,17 @@ public class MainController {
     }
 
     @PostMapping("/add")
-    public String addBusinessService(@RequestParam String serviceLine, @RequestParam String name, @RequestParam String workComposition, @RequestParam Integer price) {
-        businessServiceService.add(businessServiceRepository, serviceLine, name, workComposition, price);
+    public String addBusinessService(@RequestParam String serviceLine, @RequestParam String name, @RequestParam String workComposition, @RequestParam Integer price, @RequestParam List<Integer> selectedTechnicalServiceIds) {
+        ArrayList<BusinessService> businessServices = (ArrayList<BusinessService>) businessServiceRepository.findAll();
+        int id = businessServices.size() + 1;
+        BusinessService businessService = new BusinessService(id, serviceLine, name, workComposition, price);
+        TreeSet<TechnicalService> technicalServices = new TreeSet<>();
+        for (Integer technicalId : selectedTechnicalServiceIds) {
+            TechnicalService technicalService = technicalServiceRepository.findById(technicalId).get();
+            technicalServices.add(technicalService);
+        }
+        businessService.setRelatedTechnicalServices(technicalServices);
+        businessServiceRepository.save(businessService);
         return "redirect:/";
     }
 

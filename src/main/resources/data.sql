@@ -21,7 +21,8 @@ INSERT INTO business_service (id, name, price, service_line, work_composition) V
 (5, 'Do5', 500, 'Doing', 'Do something and Do something else');
 
 
-INSERT IGNORE INTO technical_service (id, service_line, name, auxiliary_element) values (1, 'Doing', 'Break into computer', 'helper');
-INSERT IGNORE INTO technical_service (id, service_line, name, auxiliary_element) values (2, 'Dobingling', 'Break computer', 'google');
-INSERT IGNORE INTO technical_service (id, service_line, name, auxiliary_element) values (3, 'Killer', 'Computer', 'Heller');
+INSERT INTO technical_service (id, service_line, name, auxiliary_element) VALUES
+(1, 'tec1', 'Break into computer1', 'helper1'),
+(2, 'tec2', 'Break into computer2', 'helper2'),
+(3, 'tec3', 'Break into computer3', 'helper3');
 

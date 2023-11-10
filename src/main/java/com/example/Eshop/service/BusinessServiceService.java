@@ -1,6 +1,7 @@
 package com.example.Eshop.service;
 
 import com.example.Eshop.model.BusinessService;
+import com.example.Eshop.model.TechnicalService;
 import com.example.Eshop.repos.BusinessServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Set;
 
 @Service
 public class BusinessServiceService {
@@ -29,14 +31,6 @@ public class BusinessServiceService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public void add(BusinessServiceRepository businessServiceRepository, String serviceLine, String name, String workComposition, int price) {
-        ArrayList<BusinessService> businessServices = (ArrayList<BusinessService>) businessServiceRepository.findAll();
-        int id = businessServices.size() + 1;
-        BusinessService businessService = new BusinessService(id, serviceLine, name, workComposition, price);
-        businessServiceRepository.save(businessService);
     }
 
 

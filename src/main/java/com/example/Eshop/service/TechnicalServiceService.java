@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @Service
-public class TechnicalServiceService {
+public class TechnicalServiceService  {
 
     public void updateIndexOrder(int id) {
         String url = "jdbc:mysql://localhost:3306/eshop?useUnicode=true&serverTimezone=UTC";

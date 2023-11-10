@@ -12,6 +12,7 @@
             <th scope="col">Name</th>
             <th scope="col">Work Composition</th>
             <th scope="col">Price</th>
+            <th scope="col">Related TS</th>
          </tr>
       </thead>
       <tbody>
@@ -22,6 +23,11 @@
             <td>${businessService.name}</td>
             <td>${businessService.workComposition}</td>
             <td>${businessService.price}</td>
+            <td>
+            <#list businessService.relatedTechnicalServices as relatedTechnicalService>
+                ${relatedTechnicalService.id}
+            </#list>
+            </td>
          </tr>
          </#list>
       </tbody>
@@ -50,6 +56,14 @@ Delete service
          </div>
          <div class="form-group">
             <input type="number" name="price" placeholder="Price" required/>
+         </div>
+         <div>
+            <#list technicalServices as technicalService>
+               <div class="form-check">
+                  <input class="form-check-input" name="selectedTechnicalServiceIds" type="checkbox" value=${technicalService.id} id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">${technicalService.name}</label>
+               </div>
+            </#list>
          </div>
          <input type="hidden" name="_csrf" value="${_csrf.token}" />
          <div>

@@ -1,6 +1,9 @@
 package com.example.Eshop.model;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 public class BusinessService {
@@ -15,6 +18,10 @@ public class BusinessService {
     private String workComposition;
 
     private int price;
+
+    @ManyToMany
+    private Set<TechnicalService> relatedTechnicalServices;
+
 
     public int getId() {
         return id;
@@ -54,6 +61,14 @@ public class BusinessService {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Set<TechnicalService> getRelatedTechnicalServices() {
+        return relatedTechnicalServices;
+    }
+
+    public void setRelatedTechnicalServices(Set<TechnicalService> relatedTechnicalServices) {
+        this.relatedTechnicalServices = relatedTechnicalServices;
     }
 
     public BusinessService() {

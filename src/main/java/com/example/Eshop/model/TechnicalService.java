@@ -1,12 +1,9 @@
 package com.example.Eshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class TechnicalService {
+public class TechnicalService implements Comparable<TechnicalService>{
 
     @Id
     private int id;
@@ -16,6 +13,10 @@ public class TechnicalService {
     private String name;
 
     private String auxiliaryElement;
+
+    @ManyToOne
+    @JoinColumn(name = "businessService_id")
+    private BusinessService businessService;
 
     public int getId() {
         return id;
@@ -58,5 +59,10 @@ public class TechnicalService {
         this.serviceLine = serviceLine;
         this.name = name;
         this.auxiliaryElement = auxiliaryElement;
+    }
+
+    @Override
+    public int compareTo(TechnicalService o) {
+        return Integer.compare(this.id, o.id);
     }
 }
