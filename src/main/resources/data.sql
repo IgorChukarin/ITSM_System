@@ -26,3 +26,11 @@ INSERT INTO technical_service (id, service_line, name, auxiliary_element) VALUES
 (2, 'tec2', 'Break into computer2', 'helper2'),
 (3, 'tec3', 'Break into computer3', 'helper3');
 
+INSERT INTO business_service_related_technical_services (business_service_id, related_technical_services_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 1),
+(4, 3),
+(5, 2),
+(5, 3);

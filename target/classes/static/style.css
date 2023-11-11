@@ -10,3 +10,13 @@
 .margintop50 {
     margin-top: 50px;
 }
+
+.checkbox-container {
+    border: 1px solid #ccc; /* Цвет и толщина границы */
+    padding: 10px; /* Отступ вокруг контейнера */
+    border-radius: 5px; /* Скругление углов (опционально) */
+}
+
+.form-check {
+    margin-right: 10px;
+}

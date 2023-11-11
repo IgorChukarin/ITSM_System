@@ -22,7 +22,7 @@
             <td>${businessService.serviceLine}</td>
             <td>${businessService.name}</td>
             <td>${businessService.workComposition}</td>
-            <td>${businessService.price}</td>
+            <td>${businessService.price}₽</td>
             <td>
             <#list businessService.relatedTechnicalServices as relatedTechnicalService>
                 ${relatedTechnicalService.id}
@@ -57,7 +57,7 @@ Delete service
          <div class="form-group">
             <input type="number" name="price" placeholder="Price" required/>
          </div>
-         <div>
+         <div class="checkbox-container mb-3">
             <#list technicalServices as technicalService>
                <div class="form-check">
                   <input class="form-check-input" name="selectedTechnicalServiceIds" type="checkbox" value=${technicalService.id} id="flexCheckDefault">
@@ -102,6 +102,14 @@ Delete service
          </div>
          <div class="form-group">
             <input type="number" name="price" placeholder="New price">
+         </div>
+         <div class="checkbox-container mb-3">
+            <#list technicalServices as technicalService>
+               <div class="form-check">
+                  <input class="form-check-input" name="selectedTechnicalServiceIds" type="checkbox" value=${technicalService.id} id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">${technicalService.name}</label>
+               </div>
+            </#list>
          </div>
          <input type="hidden" name="_csrf" value="${_csrf.token}" />
          <div>
