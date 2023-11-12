@@ -9,6 +9,10 @@
         <module name="ITSM" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="itsmSystem" target="1.8" />
+      <module name="website" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
