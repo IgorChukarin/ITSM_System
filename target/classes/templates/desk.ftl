@@ -31,10 +31,17 @@
             <td>${request.text}</td>
             <td>
                <#if request.contractor??>
-                  ${request.contractor.name}
+                  ${request.contractor.username}
                <#else>
                   <span style="color: #a5a5a5">not assigned</span>
                </#if>
+            </td>
+            <td style="padding: 0px">
+               <form method="post" action="/desk">
+                  <input type="hidden" name="requestId" value=${request.id}>
+                  <input type="submit" class="btn btn-primary" value="Take"></button>
+                  <input type="hidden" name="_csrf" value="${_csrf.token}" />
+               </form>
             </td>
          </tr>
          </#list>

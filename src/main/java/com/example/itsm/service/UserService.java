@@ -2,7 +2,7 @@ package com.example.itsm.service;
 
 import com.example.itsm.model.Role;
 import com.example.itsm.model.User;
-import com.example.itsm.repos.UserRepo;
+import com.example.itsm.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +14,7 @@ import java.util.Collections;
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
-    UserRepo userRepo;
+    UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

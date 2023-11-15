@@ -2,7 +2,7 @@ package com.example.itsm.controller;
 
 import com.example.itsm.model.Role;
 import com.example.itsm.model.User;
-import com.example.itsm.repos.UserRepo;
+import com.example.itsm.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAuthority('USER')")
 public class UserController {
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @GetMapping
     public String userList(Model model) {
