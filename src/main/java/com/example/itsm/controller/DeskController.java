@@ -29,6 +29,9 @@ public class DeskController {
     @GetMapping
     public String showDesk(Model model) {
         Iterable<Request> requests = requestRepository.findAll();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         model.addAttribute("requests", requests);
         return "desk";
     }
@@ -41,6 +44,7 @@ public class DeskController {
         User user = userRepository.findByUsername(username);
         Request request = requestRepository.findById(requestId).get();
         request.setContractor(user);
+        request.setStatus(RequestStatus.IN_PROGRESS);
         requestRepository.save(request);
         return "redirect:/desk";
     }

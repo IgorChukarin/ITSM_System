@@ -14,18 +14,18 @@ WHERE NOT EXISTS (
 
 INSERT IGNORE INTO usr (id, active, password, username) VALUES (2, 1, 'pass', 'chukarin');
 INSERT INTO user_role (user_id, roles)
-SELECT 1, 'USER'
+SELECT 2, 'USER'
 WHERE NOT EXISTS (
-    SELECT 1 FROM user_role
-    WHERE user_id = 1 AND roles = 'USER'
+    SELECT 2 FROM user_role
+    WHERE user_id = 2 AND roles = 'USER'
 );
 
 INSERT IGNORE INTO usr (id, active, password, username) VALUES (3, 1, 'pass', 'verba');
 INSERT INTO user_role (user_id, roles)
-SELECT 1, 'USER'
+SELECT 3, 'USER'
 WHERE NOT EXISTS (
-    SELECT 1 FROM user_role
-    WHERE user_id = 1 AND roles = 'USER'
+    SELECT 3 FROM user_role
+    WHERE user_id = 3 AND roles = 'USER'
 );
 
 
@@ -52,6 +52,6 @@ INSERT INTO business_service_related_technical_services (business_service_id, re
 
 
 INSERT INTO request (id, creation_time, email, name, status, subject, text, business_service_id) VALUES
-(1, '2023-11-16 09:18:03', 'Zigor2356@mail.ru', 'Чукарин Игорь Евгеньевич', 'IN_PROGRESS', 'Не работает форма', 'При нажатии на кнопку формы сообщение не отправляется', 1),
-(2, '2023-11-16 09:19:03', 'hattlerrr@mail.ru', 'Сорокина Анастасия', 'IN_PROGRESS', 'Не меняется цвет фона', 'При выборе нового цвета, он остается исходным', 2),
-(3, '2023-11-16 10:19:03', 'unuchakova@mail.ru', 'Унучакова Дарья Алексеевна', 'IN_PROGRESS', 'Плохо', 'Мне ничего не нравится', 3);
+(1, '2023-11-16 09:18:03', 'Zigor2356@mail.ru', 'Чукарин Игорь Евгеньевич', 'WAITING', 'Не работает форма', 'При нажатии на кнопку формы сообщение не отправляется', 1),
+(2, '2023-11-16 09:19:03', 'hattlerrr@mail.ru', 'Сорокина Анастасия', 'WAITING', 'Не меняется цвет фона', 'При выборе нового цвета, он остается исходным', 2),
+(3, '2023-11-16 10:19:03', 'unuchakova@mail.ru', 'Унучакова Дарья Алексеевна', 'WAITING', 'Плохо', 'Мне ничего не нравится', 3);

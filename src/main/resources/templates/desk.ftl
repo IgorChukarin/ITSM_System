@@ -32,6 +32,8 @@
             <td>${request.text}</td>
 
 
+
+
             <#if request.contractor??>
                 <td>
                    ${request.contractor.username}
@@ -46,15 +48,27 @@
                            </form>
                         </td>
                     <#else>
-                        <td style="background-color: #28a745">
-                           <form method="post" action="/desk/complete">
-                              <input type="hidden" name="requestId" value=${request.id}>
-                              <input type="submit" class="btn btn-success center-button" value="Finish"></button>
-                              <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                           </form>
-                        </td>
+                        <#if username == request.contractor.username>
+                            <td style="background-color: #28a745">
+                               <form method="post" action="/desk/complete">
+                                  <input type="hidden" name="requestId" value=${request.id}>
+                                  <input type="submit" class="btn btn-success center-button" value="Finish"></button>
+                                  <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                               </form>
+                            </td>
+                        <#else>
+                            <td style="background-color: #28a745">
+                               <form method="post" action="/desk/complete">
+                                  <input type="hidden" name="requestId" value=${request.id}>
+                                  <input type="submit" class="btn btn-success center-button" value="Taken" disabled></button>
+                                  <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                               </form>
+                            </td>
+                        </#if>
                     </#if>
                 </#if>
+
+
             <#else>
                 <td>
                    <span style="color: #a5a5a5">not assigned</span>
@@ -69,6 +83,8 @@
                     </td>
                 </#if>
             </#if>
+
+
 
 
          </tr>

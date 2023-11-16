@@ -106,7 +106,7 @@ public class Request {
         this.subject = subject;
         this.text = text;
         this.creationTime = creationTime;
-        this.status = RequestStatus.IN_PROGRESS;
+        this.status = RequestStatus.WAITING;
     }
 
     public String getFormattedCreationTime() {

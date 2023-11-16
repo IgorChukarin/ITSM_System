@@ -29,7 +29,7 @@
 <#if isAuthorised>
 <a href="/user/userPage/${user.id}">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <button class="btn btn-outline-light" type="">${name}</button>
+    <button class="btn btn-outline-light">${name}</button>
 </a>
 </#if>
 </#macro>
