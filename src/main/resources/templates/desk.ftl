@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 <@c.page>
 
 
@@ -20,7 +21,7 @@
       </thead>
       <tbody>
          <#list requests as request>
-         <tr>
+         <tr <#if request.status == "COMPLETED">style="color: #a5a5a5""</#if>>
             <th scope="row">${request.id}</th>
             <td>${request.status}</td>
             <td>${request.formattedCreationTime}</td>
@@ -29,20 +30,47 @@
             <td>${request.businessService.name}</td>
             <td>${request.subject}</td>
             <td>${request.text}</td>
-            <td>
-               <#if request.contractor??>
-                  ${request.contractor.username}
-               <#else>
-                  <span style="color: #a5a5a5">not assigned</span>
-               </#if>
-            </td>
-            <td style="padding: 0px">
-               <form method="post" action="/desk">
-                  <input type="hidden" name="requestId" value=${request.id}>
-                  <input type="submit" class="btn btn-primary" value="Take"></button>
-                  <input type="hidden" name="_csrf" value="${_csrf.token}" />
-               </form>
-            </td>
+
+
+            <#if request.contractor??>
+                <td>
+                   ${request.contractor.username}
+                </td>
+                <#if !isAdmin>
+                    <#if request.status == "COMPLETED">
+                        <td style="background-color: #28a7455e">
+                           <form method="post" action="/desk/complete">
+                              <input type="hidden" name="requestId" value=${request.id}>
+                              <input type="submit" class="btn center-button" value="Done" disabled></button>
+                              <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                           </form>
+                        </td>
+                    <#else>
+                        <td style="background-color: #28a745">
+                           <form method="post" action="/desk/complete">
+                              <input type="hidden" name="requestId" value=${request.id}>
+                              <input type="submit" class="btn btn-success center-button" value="Finish"></button>
+                              <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                           </form>
+                        </td>
+                    </#if>
+                </#if>
+            <#else>
+                <td>
+                   <span style="color: #a5a5a5">not assigned</span>
+                </td>
+                <#if !isAdmin>
+                    <td style="background-color: #007bff"">
+                       <form method="post" action="/desk">
+                          <input type="hidden" name="requestId" value=${request.id}>
+                          <input type="submit" class="btn btn-primary center-button" value="Take"></button>
+                          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                       </form>
+                    </td>
+                </#if>
+            </#if>
+
+
          </tr>
          </#list>
       </tbody>

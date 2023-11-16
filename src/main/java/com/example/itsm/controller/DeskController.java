@@ -1,9 +1,11 @@
 package com.example.itsm.controller;
 
 import com.example.itsm.model.Request;
+import com.example.itsm.model.RequestStatus;
 import com.example.itsm.model.User;
 import com.example.itsm.repos.RequestRepository;
 import com.example.itsm.repos.UserRepository;
+import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,6 +41,14 @@ public class DeskController {
         User user = userRepository.findByUsername(username);
         Request request = requestRepository.findById(requestId).get();
         request.setContractor(user);
+        requestRepository.save(request);
+        return "redirect:/desk";
+    }
+
+    @PostMapping("/complete")
+    public String completeTask(@RequestParam int requestId) {
+        Request request = requestRepository.findById(requestId).get();
+        request.setStatus(RequestStatus.COMPLETED);
         requestRepository.save(request);
         return "redirect:/desk";
     }
