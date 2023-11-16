@@ -22,7 +22,7 @@
       <tbody>
          <#list requests as request>
          <tr <#if request.status == "COMPLETED">style="color: #a5a5a5""</#if>>
-            <th scope="row">${request.id}</th>
+            <th scope="row"> <a href="request/${request.id}">${request.id}... </a></th>
             <td>${request.status}</td>
             <td>${request.formattedCreationTime}</td>
             <td>${request.email}</td>
@@ -57,10 +57,10 @@
                                </form>
                             </td>
                         <#else>
-                            <td style="background-color: #28a745">
+                            <td style="background-color: #d9dcde">
                                <form method="post" action="/desk/complete">
                                   <input type="hidden" name="requestId" value=${request.id}>
-                                  <input type="submit" class="btn btn-success center-button" value="Taken" disabled></button>
+                                  <input type="submit" class="btn center-button" value="Taken" disabled></button>
                                   <input type="hidden" name="_csrf" value="${_csrf.token}" />
                                </form>
                             </td>

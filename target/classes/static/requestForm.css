@@ -1,0 +1,10 @@
+    p {
+        display: table;
+    }
+    span {
+        display: table-row;
+    }
+    span strong {
+        display: table-cell;
+        padding-right: 100px;
+    }
