@@ -12,6 +12,11 @@
    </head>
    <body>
       <div class="container" style="margin-top: 30px; margin-bottom: 30px">
+         <nav>
+           <ul class="pagination">
+             <li class="page-item"><a class="page-link" href="/desk">&laquo; back</a></li>
+           </ul>
+         </nav>
          <div class="row">
             <div class="col-sm-12">
                <div class="card">
@@ -51,6 +56,7 @@
                             <span style="color: #a5a5a5">not assigned</span>
                         </#if>
                      </p>
+                     <br>
                   </div>
                </div>
             </div>
@@ -59,9 +65,11 @@
             <div class="col-sm-12" style="margin-top: 30px">
                <div class="card">
                   <div class="card-body">
-                     <h5 class="card-title">Brief information</h5>
+                     <h5 class="card-title">Related assets</h5>
                      <p>
-                        Something
+                        <#list request.businessService.relatedTechnicalServices as technicalService>
+                            <span>${technicalService.name}</span>
+                        </#list>
                      </p>
                   </div>
                </div>
