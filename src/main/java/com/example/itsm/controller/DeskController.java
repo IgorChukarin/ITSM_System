@@ -7,6 +7,7 @@ import com.example.itsm.repos.RequestRepository;
 import com.example.itsm.repos.UserRepository;
 import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,6 @@ public class DeskController {
 
     @PostMapping
     public String assignContractor(@RequestParam int requestId) {
-        System.out.println(requestId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByUsername(username);
