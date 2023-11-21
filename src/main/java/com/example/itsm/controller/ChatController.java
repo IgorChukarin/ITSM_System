@@ -5,6 +5,7 @@ import com.example.itsm.model.ChatRoom;
 import com.example.itsm.model.User;
 import com.example.itsm.repos.ChatRoomRepository;
 import com.example.itsm.repos.UserRepository;
+import com.example.itsm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     UserRepository userRepository;
@@ -46,9 +50,7 @@ public class ChatController {
 
     @PostMapping("/startChat")
     public String startChat(@RequestParam int recipientId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User currentUser = userRepository.findByUsername(username);
+        User currentUser = userService.getCurrentUser();
 
         User recipient = userRepository.findById((long) recipientId).get();
         String chatId = currentUser.getId() + "_" + recipientId;
