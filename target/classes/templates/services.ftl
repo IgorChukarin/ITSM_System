@@ -12,7 +12,6 @@
             <th scope="col">Name</th>
             <th scope="col">Work Composition</th>
             <th scope="col">Price</th>
-            <th scope="col">Related TS</th>
          </tr>
       </thead>
       <tbody>
@@ -23,11 +22,6 @@
             <td>${businessService.name}</td>
             <td>${businessService.workComposition}</td>
             <td>${businessService.price}₽</td>
-            <td>
-            <#list businessService.relatedTechnicalServices as relatedTechnicalService>
-                ${relatedTechnicalService.id}
-            </#list>
-            </td>
          </tr>
          </#list>
       </tbody>

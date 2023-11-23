@@ -68,7 +68,7 @@
                     <h5 class="card-title">Related assets</h5>
                     <p>
                         <#list request.businessService.relatedTechnicalServices as technicalService>
-                        <span>${technicalService.name}</span>
+                        <span>${technicalService.auxiliaryElement}</span>
                     </#list>
                     </p>
                 </div>

@@ -9,4 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 public interface ChatRoomRepository extends CrudRepository<ChatRoom, String> {
     Iterable<ChatRoom> findAllBySender(User sender);
+    ChatRoom findByChatId(String chatId);
+    Boolean existsByChatId(String chatId);
 }
