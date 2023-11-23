@@ -77,4 +77,10 @@ public class ChatController {
         model.addAttribute("curChatId", chatId);
         return "chat";
     }
+
+    @PostMapping("{chatId}/sendMessage")
+    public String sendMessage() {
+        System.out.println("sent");
+        return "redirect:/chat/{chatId}";
+    }
 }

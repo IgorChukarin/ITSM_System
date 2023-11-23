@@ -1,10 +1,7 @@
 package com.example.itsm.model;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,8 +16,12 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String chatId;
-    private String senderId;
-    private String recipientId;
+
+    @ManyToMany
+    private User sender;
+    @ManyToMany
+    private User recipient;
+
     private String senderName;
     private String recipientName;
     private String content;
