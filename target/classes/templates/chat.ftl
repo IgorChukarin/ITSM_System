@@ -9,8 +9,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/static/chat.css">
 </head>
-<div class="container" style="margin-top: 30px; margin-bottom: 30px">
-	<div class="dropdown">
+	<div class="dropdown" style="margin-top: 15px">
 		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
 			aria-haspopup="true" aria-expanded="false">
 		New chat
@@ -25,7 +24,8 @@
 			</#list>
 		</div>
 	</div>
-	<br>
+<div class="container" style="margin-top: 15px; margin-bottom: 30px">
+
 	<div class="row rounded-lg overflow-hidden shadow">
 		<!-- Users box-->
 		<div class="col-5 px-0">
@@ -46,7 +46,7 @@
 										<h6 class="mb-0">${userChat.recipient.username}</h6>
 										<small class="small font-weight-bold">25 Dec</small>
 									</div>
-									<p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+									<p class="font-italic mb-0 text-small">Last message</p>
 								</div>
 							</div>
 						</a>
@@ -59,7 +59,7 @@
 										<h6 class="mb-0">${userChat.recipient.username}</h6>
 										<small class="small font-weight-bold">14 Dec</small>
 									</div>
-									<p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+									<p class="font-italic text-muted mb-0 text-small">Last message</p>
 								</div>
 							</div>
 						</a>
@@ -87,70 +87,41 @@
 		<div class="col-7 px-0">
 			<div class="px-4 py-5 chat-box bg-white">
 				<#if chatId??>
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3">
-                        <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+
+
+                <#list allMessages as message>
+                    <#if curChatId == message.chatId>
+                        <#if currentUser.id == message.sender.id>
+                            <div class="media w-50 ml-auto mb-3">
+                                <div class="media-body">
+                                    <div class="bg-primary rounded py-2 px-3 mb-2">
+                                        <p class="text-small mb-0 text-white">${message.content}</p>
+                                    </div>
+                                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                                </div>
                             </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                        <#else>
+                            <div class="media w-50 mb-3">
+                                <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
+                                <div class="media-body ml-3">
+                                    <div class="bg-light rounded py-2 px-3 mb-2">
+                                        <p class="text-small mb-0 text-muted">${message.content}</p>
+                                    </div>
+                                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                                </div>
                             </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3">
-                        <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test, which is a new approach to have</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    <!-- Sender Message-->
-                    <div class="media w-50 mb-3">
-                        <img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-3">
-                            <div class="bg-light rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    <!-- Reciever Message-->
-                    <div class="media w-50 ml-auto mb-3">
-                        <div class="media-body">
-                            <div class="bg-primary rounded py-2 px-3 mb-2">
-                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p class="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
+                        </#if>
+                    </#if>
+                </#list>
+
+
 				</#if>
 			</div>
                 <!-- Typing area -->
 			<#if curChatId??>
             	<form method="post" action="${curChatId}/sendMessage" class="bg-light">
 					<div class="input-group">
-                        <input type="text" placeholder="Type a message..." aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                        <input type="text" name="content" placeholder="Type a message..." aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <div class="input-group-append">
                             <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>

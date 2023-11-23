@@ -17,9 +17,9 @@ public class ChatMessage {
     private Integer id;
     private String chatId;
 
-    @ManyToMany
+    @ManyToOne
     private User sender;
-    @ManyToMany
+    @ManyToOne
     private User recipient;
 
     private String senderName;
