@@ -8,6 +8,10 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/static/chat.css">
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+	<script src="/static/app.js"></script>
 </head>
 	<div class="dropdown" style="margin-top: 15px">
 		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -44,9 +48,9 @@
 								<div class="media-body ml-4">
 									<div class="d-flex align-items-center justify-content-between mb-1">
 										<h6 class="mb-0">${userChat.recipient.username}</h6>
-										<small class="small font-weight-bold">25 Dec</small>
+										<small class="small font-weight-bold">[14 Dec]</small>
 									</div>
-									<p class="font-italic mb-0 text-small">Last message</p>
+									<p class="font-italic mb-0 text-small">[Last message]</p>
 								</div>
 							</div>
 						</a>
@@ -57,9 +61,9 @@
 								<div class="media-body ml-4">
 									<div class="d-flex align-items-center justify-content-between mb-1">
 										<h6 class="mb-0">${userChat.recipient.username}</h6>
-										<small class="small font-weight-bold">14 Dec</small>
+										<small class="small font-weight-bold">[14 Dec]</small>
 									</div>
-									<p class="font-italic text-muted mb-0 text-small">Last message</p>
+									<p class="font-italic text-muted mb-0 text-small">[Last message]</p>
 								</div>
 							</div>
 						</a>
@@ -71,9 +75,9 @@
 								<div class="media-body ml-4">
 									<div class="d-flex align-items-center justify-content-between mb-1">
 										<h6 class="mb-0">${userChat.recipient.username}</h6>
-										<small class="small font-weight-bold">14 Dec</small>
+										<small class="small font-weight-bold">[14 Dec]</small>
 									</div>
-									<p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+									<p class="font-italic text-muted mb-0 text-small">[Last message]</p>
 								</div>
 							</div>
 						</a>
@@ -97,7 +101,7 @@
                                     <div class="bg-primary rounded py-2 px-3 mb-2">
                                         <p class="text-small mb-0 text-white">${message.content}</p>
                                     </div>
-                                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                                    <p class="small text-muted">[12:00 PM | Dec 14]</p>
                                 </div>
                             </div>
                         <#else>
@@ -107,7 +111,7 @@
                                     <div class="bg-light rounded py-2 px-3 mb-2">
                                         <p class="text-small mb-0 text-muted">${message.content}</p>
                                     </div>
-                                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                                    <p class="small text-muted">[12:00 PM | Dec 14]</p>
                                 </div>
                             </div>
                         </#if>
@@ -115,16 +119,22 @@
                 </#list>
 
 
+                <div id="greetings">
+                
+                </div>
+
 				</#if>
 			</div>
                 <!-- Typing area -->
 			<#if curChatId??>
-            	<form method="post" action="${curChatId}/sendMessage" class="bg-light">
+            	<form id="sendMessage"  class="bg-light">
 					<div class="input-group">
-                        <input type="text" name="content" placeholder="Type a message..." aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                        <input id="content" type="text" name="content" placeholder="Type a message..." aria-describedby="send" class="form-control rounded-0 border-0 py-4 bg-light" required>
+                        <input id="chatId" type="hidden" value="${curChatId}" />
+                        <input id="senderId" type="hidden" value="${currentUser.id}" />
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <div class="input-group-append">
-                            <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                            <button id="send" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                         </div>
                 	</div>
 				</form>
@@ -143,5 +153,4 @@
 	</div>
 </div>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </@c.page>

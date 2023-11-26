@@ -10,6 +10,8 @@ import com.example.itsm.repos.UserRepository;
 import com.example.itsm.service.ChatRoomService;
 import com.example.itsm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -87,17 +89,17 @@ public class ChatController {
         return "chat";
     }
 
-    @PostMapping("{chatId}/sendMessage")
-    public String sendMessage(@RequestParam String content, @PathVariable String chatId) {
-        User currentUser = userService.getCurrentUser();
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public ChatMessage sendMessage(ChatMessage chatMessage) {
+        String chatId = chatMessage.getChatId();
+        Long currentUserId = chatMessage.getSender().getId();
+        User currentUser = userRepository.findById(currentUserId).get();
         User recipient = chatRoomService.findRecipient(chatId, currentUser);
-        ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setChatId(chatId);
         chatMessage.setSender(currentUser);
         chatMessage.setRecipient(recipient);
-        chatMessage.setContent(content);
         chatMessage.setTimestamp(LocalDateTime.now());
         chatMessageRepository.save(chatMessage);
-        return "redirect:/chat/{chatId}";
+        return chatMessage;
     }
 }

@@ -26,4 +26,8 @@ public class ChatMessage {
     private String recipientName;
     private String content;
     private LocalDateTime timestamp;
+
+    public ChatMessage(String name) {
+        this.content = name;
+    }
 }
