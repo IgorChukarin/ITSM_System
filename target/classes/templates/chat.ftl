@@ -120,7 +120,7 @@
 
 
                 <div id="greetings">
-                
+
                 </div>
 
 				</#if>
