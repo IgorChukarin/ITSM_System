@@ -1,5 +1,5 @@
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://192.168.1.9:8080/gs-guide-websocket'
+    brokerURL: 'ws://192.168.1.59:8080/gs-guide-websocket'
 });
 
 stompClient.onConnect = (frame) => {
@@ -84,10 +84,25 @@ function showGreeting(message, sendingTime, sendingDate, senderId, curUserId) {
             '</div>' +
         '</div>';
     }
+    scrollChatToBottom();
 }
 
 $(function () {
-    $("#sendMessage").on('submit', (e) => e.preventDefault());
+scrollChatToBottom();
+    $("#sendMessage").on('submit', (e) => {
+        e.preventDefault();
+        sendName();
+        $("#content").val('');
+        updateContent();
+    });
     connect();
-    $( "#send" ).click(() => sendName());
 });
+
+function updateContent() {
+    $("#content").text("Новое содержимое элемента");
+}
+
+function scrollChatToBottom() {
+    var chatBox = document.querySelector('.chat-box'); // Получаем контейнер чата
+    chatBox.scrollTop = chatBox.scrollHeight; // Прокручиваем контейнер вниз до его нижней границы
+}

@@ -129,7 +129,7 @@
 			<#if curChatId??>
             	<form id="sendMessage"  class="bg-light">
 					<div class="input-group">
-                        <input id="content" type="text" name="content" placeholder="Type a message..." aria-describedby="send" class="form-control rounded-0 border-0 py-4 bg-light" required>
+                        <input id="content" type="text" name="content" placeholder="Type a message..." aria-describedby="send" class="form-control rounded-0 border-0 py-4 bg-light">
                         <input id="chatId" type="hidden" value="${curChatId}" />
                         <input id="senderId" type="hidden" value="${currentUser.id}" />
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
