@@ -3,6 +3,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -29,5 +30,15 @@ public class ChatMessage {
 
     public ChatMessage(String name) {
         this.content = name;
+    }
+
+    public String getSendingTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        return timestamp.format(formatter);
+    }
+
+    public String getSendingDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd");
+        return timestamp.format(formatter);
     }
 }

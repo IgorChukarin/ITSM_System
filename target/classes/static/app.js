@@ -7,9 +7,11 @@ stompClient.onConnect = (frame) => {
     console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/greetings', (chatMessage) => {
         var content = JSON.parse(chatMessage.body).content;
+        var sendingTime = JSON.parse(chatMessage.body).sendingTime;
+        var sendingDate = JSON.parse(chatMessage.body).sendingDate;
         var senderId = JSON.parse(chatMessage.body).sender.id;
         var curUserId = $("#senderId").val();
-        showGreeting(content, senderId, curUserId);
+        showGreeting(content, sendingTime, sendingDate, senderId, curUserId);
     });
 };
 
@@ -57,7 +59,7 @@ function sendName() {
     });
 }
 
-function showGreeting(message, senderId, curUserId) {
+function showGreeting(message, sendingTime, sendingDate, senderId, curUserId) {
     console.log(senderId);
     console.log(curUserId);
     if (senderId == curUserId) {
@@ -67,7 +69,7 @@ function showGreeting(message, senderId, curUserId) {
                 '<div class="bg-primary rounded py-2 px-3 mb-2">' +
                     '<p class="text-small mb-0 text-white">' + message + '</p>' +
                 '</div>' +
-            '<p class="small text-muted">12:00 PM | Aug 13</p>' +
+            '<p class="small text-muted">' + sendingTime + ' | ' + sendingDate + '</p>' +
             '</div>' +
         '</div>';
     } else {
@@ -78,7 +80,7 @@ function showGreeting(message, senderId, curUserId) {
                 '<div class="bg-light rounded py-2 px-3 mb-2">' +
                     '<p class="text-small mb-0 text-muted">' + message + '</p>' +
                 '</div>' +
-                '<p class="small text-muted">[12:00 PM | Dec 14]</p>' +
+                '<p class="small text-muted">' + sendingTime + ' | ' + sendingDate + '</p>' +
             '</div>' +
         '</div>';
     }

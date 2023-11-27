@@ -101,7 +101,7 @@
                                     <div class="bg-primary rounded py-2 px-3 mb-2">
                                         <p class="text-small mb-0 text-white">${message.content}</p>
                                     </div>
-                                    <p class="small text-muted">[12:00 PM | Dec 14]</p>
+                                    <p class="small text-muted">${message.sendingTime} | ${message.sendingDate}</p>
                                 </div>
                             </div>
                         <#else>
@@ -111,7 +111,7 @@
                                     <div class="bg-light rounded py-2 px-3 mb-2">
                                         <p class="text-small mb-0 text-muted">${message.content}</p>
                                     </div>
-                                    <p class="small text-muted">[12:00 PM | Dec 14]</p>
+                                    <p class="small text-muted">${message.sendingTime} | ${message.sendingDate}</p>
                                 </div>
                             </div>
                         </#if>
