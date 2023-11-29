@@ -1,11 +1,12 @@
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://192.168.1.59:8080/gs-guide-websocket'
+    brokerURL: 'ws://172.20.10.2:8080/gs-guide-websocket'
 });
 
 stompClient.onConnect = (frame) => {
     setConnected(true);
     console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/greetings', (chatMessage) => {
+    console.log('ChatId: ' + $("#chatId").val());
+    stompClient.subscribe('/topic/greetings/' + $("#chatId").val(), (chatMessage) => {
         var content = JSON.parse(chatMessage.body).content;
         var sendingTime = JSON.parse(chatMessage.body).sendingTime;
         var sendingDate = JSON.parse(chatMessage.body).sendingDate;
@@ -48,7 +49,7 @@ function disconnect() {
 
 function sendName() {
     stompClient.publish({
-        destination: "/app/hello",
+        destination: "/app/hello/" + $("#chatId").val(),
         body: JSON.stringify({
         'content': $("#content").val(),
         'chatId': $("#chatId").val(),
@@ -103,6 +104,6 @@ function updateContent() {
 }
 
 function scrollChatToBottom() {
-    var chatBox = document.querySelector('.chat-box'); // Получаем контейнер чата
-    chatBox.scrollTop = chatBox.scrollHeight; // Прокручиваем контейнер вниз до его нижней границы
+    var chatBox = document.querySelector('.chat-box');
+    chatBox.scrollTop = chatBox.scrollHeight;
 }

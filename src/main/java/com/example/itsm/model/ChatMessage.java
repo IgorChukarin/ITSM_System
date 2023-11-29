@@ -33,7 +33,7 @@ public class ChatMessage {
     }
 
     public String getSendingTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return timestamp.format(formatter);
     }
 

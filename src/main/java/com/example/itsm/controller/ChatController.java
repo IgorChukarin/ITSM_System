@@ -10,6 +10,7 @@ import com.example.itsm.repos.UserRepository;
 import com.example.itsm.service.ChatRoomService;
 import com.example.itsm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.Authentication;
@@ -89,9 +90,9 @@ public class ChatController {
         return "chat";
     }
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public ChatMessage sendMessage(ChatMessage chatMessage) {
+    @MessageMapping("/hello/{curChatId}")
+    @SendTo("/topic/greetings/{curChatId}")
+    public ChatMessage sendMessage(@DestinationVariable String curChatId, ChatMessage chatMessage) {
         String chatId = chatMessage.getChatId();
         Long currentUserId = chatMessage.getSender().getId();
         User currentUser = userRepository.findById(currentUserId).get();
